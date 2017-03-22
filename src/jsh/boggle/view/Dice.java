@@ -9,21 +9,41 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.layout.StackPane;
 
 /**
- * A graphical representation of a dice
+ * A graphical representation of a dice in real life.
+ * Extends a StackPane so that the letter can be shown above a rectangle.
+ * A Dice has a face (char),
+ * A Color,
+ * A size, and
+ * A position
+ *
  * @author Joël Hoekstra
  */
 public class Dice extends StackPane {
-    private char face;
+    private char letter;
     private Color color;
     private double size;
     private Position2D position;
 
-    public Dice(Position2D position, double size, char face, Color color) {
+    public Dice() { }
+
+    public Dice setPosition(Position2D position) {
         this.position = position;
+        return this;
+    }
+
+    public Dice setSize(double size) {
         this.size = size;
-        this.face = face;
+        return this;
+    }
+
+    public Dice setLetter(char letter) {
+        this.letter = letter;
+        return this;
+    }
+
+    public Dice setColor(Color color) {
         this.color = color;
-        render();
+        return this;
     }
 
     public void render() {
@@ -34,7 +54,7 @@ public class Dice extends StackPane {
         dice.setFill(color);
         dice.setStroke(Color.BLACK);
 
-        Label text  = new Label(Character.toString(face));
+        Label text  = new Label(Character.toString(letter));
         text.setFont(Font.font("Verdana", FontWeight.BOLD, 70));
         text.setAlignment(Pos.CENTER);
         text.setTextFill(Color.PURPLE);

@@ -1,9 +1,8 @@
 package jsh.boggle.view;
 
 import javafx.scene.Group;
-import javafx.scene.paint.Color;
-import jsh.boggle.model.Board;
 import jsh.boggle.model.Model;
+import javafx.scene.paint.Color;
 
 /**
  * @author Joël Hoekstra
@@ -22,16 +21,15 @@ public class View {
         Group group = new Group();
         char[][] tempBoard = model.getBoard().getBoard();
         Dice dice;
-        Color color;
-        for (int x = 0; x < tempBoard.length; x++) {
-            for (int y = 0; y < tempBoard.length; y++) {
-                if ((x + y) % 2 == 0) {
-                    color = Color.GOLDENROD;
-                } else {
-                    color = Color.ALICEBLUE;
-                }
-                Position2D position = new Position2D(x * diceSize, y * diceSize);
-                dice = new Dice(position, diceSize, tempBoard[x][y], color);
+        int x, y;
+        for (x = 0; x < tempBoard.length; x++) {
+            for (y = 0; y < tempBoard.length; y++) {
+                dice = new Dice()
+                        .setPosition(new Position2D().setX(x * diceSize).setY(y * diceSize))
+                        .setLetter(tempBoard[x][y])
+                        .setColor(((x + y) % 2 == 0) ? Color.GOLDENROD : Color.ALICEBLUE)
+                        .setSize(diceSize);
+                dice.render();
                 group.getChildren().add(dice);
             }
         }
