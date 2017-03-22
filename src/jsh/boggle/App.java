@@ -2,50 +2,38 @@ package jsh.boggle;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.Optional;
 import javafx.scene.Parent;
+import jsh.boggle.view.View;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
+import jsh.boggle.model.Model;
 import javafx.application.Application;
-import javafx.scene.control.ButtonType;
+import jsh.boggle.controller.Controller;
 
 /**
  * @author Joël Hoekstra
  */
 public class App extends Application {
+    private Model model;
+    private View view;
+
     @Override
     public void start(Stage stage) throws Exception {
+        view = new View();
+        model = new Model(view);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/fxml/app.fxml"));
-//        Parent root = (Parent) loader.load();
         Parent root = loader.load();
-//        Controller ctrl = loader.getController();
-//        ctrl.addObservable(model);
-//        ctrl.render();
+        Controller ctrl = loader.getController();
+        ctrl.setView(view);
+        ctrl.setModel(model);
+        ctrl.render();
         Scene scene = new Scene(root, 1024, 768);
         stage.setScene(scene);
 
         stage.setTitle("Boggle Board");
         stage.setOnCloseRequest(e -> {
-            boolean allowedToClose = askToClose(stage);
-            if (allowedToClose) {
-                stage.close();
-            } else {
-                e.consume();
-            }
+            ctrl.closeApplication();
+            e.consume(); // if not closing make sure it is consumed.
         });
-        stage.setTitle("Boggle");
-//        stage.setScene(new Scene(root, 1024, 768));
         stage.show();
-    }
-
-    private boolean askToClose(Stage stage) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Close Application");
-        alert.setHeaderText("Closing Application");
-        alert.setContentText("Are you sure you want to close the Application?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-
-        return result.get() == ButtonType.OK;
     }
 }

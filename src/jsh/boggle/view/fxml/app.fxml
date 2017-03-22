@@ -16,16 +16,12 @@
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#doFullScreen" text="FullScreen" />
                         <MenuItem mnemonicParsing="false" onAction="#closeApplication" text="Quit" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Actions">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#runBoggleSearch" text="Run" />
                         <MenuItem mnemonicParsing="false" onAction="#restartBoggle" text="Restart" />
-                        <MenuItem mnemonicParsing="false" onAction="#searchWordInFoundList" text="Search Word In Found List" />
-                        <MenuItem mnemonicParsing="false" onAction="#showStats" text="Show Statistics" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
