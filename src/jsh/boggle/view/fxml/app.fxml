@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.Group?>
 
-<VBox fx:id="root" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jsh.boggle.controller.Controller">
+<VBox fx:id="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jsh.boggle.controller.Controller">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -33,31 +33,19 @@
         </MenuBar>
         <SplitPane dividerPositions="0.2505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <items>
-                <AnchorPane maxWidth="222.0" minHeight="-Infinity" maxHeight="Infinity">
+                <AnchorPane maxHeight="Infinity" maxWidth="222.0" minHeight="-Infinity" minWidth="222.0">
                     <children>
-                        <VBox prefWidth="222.0"
-                              AnchorPane.bottomAnchor="0.0"
-                              AnchorPane.leftAnchor="0.0"
-                              AnchorPane.rightAnchor="0.0"
-                              AnchorPane.topAnchor="0.0">
+                        <VBox minWidth="220.0" prefWidth="222.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <ListView
-                                        fx:id="wordListView"
-                                        prefWidth="230.0"
-                                        VBox.vgrow="ALWAYS"
-                                        AnchorPane.bottomAnchor="0.0"
-                                        AnchorPane.leftAnchor="0.0"
-                                        AnchorPane.rightAnchor="0.0"
-                                        AnchorPane.topAnchor="0.0"
-                                        onMouseClicked="#handleMouseClick"
-                                />
+                                <ListView fx:id="wordListView" onMouseClicked="#handleMouseClick" prefWidth="230.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS" />
+                        <Label fx:id="wordsFoundLabel" text="Words found:" />
                             </children>
                         </VBox>
                     </children>
                 </AnchorPane>
-                <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
+                <ScrollPane minHeight="400.0" minWidth="400.0" prefHeight="-1.0" prefWidth="-1.0">
                     <content>
-                        <AnchorPane id="Content" fx:id="mainView" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
+                        <AnchorPane id="Content" fx:id="mainView">
                             <children>
 
                             </children>
@@ -66,7 +54,7 @@
                 </ScrollPane>
             </items>
         </SplitPane>
-        <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+        <HBox id="HBox" alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="690.0" spacing="5.0" VBox.vgrow="NEVER">
             <children>
                 <Label fx:id="leftStatus" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
                     <font>

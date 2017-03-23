@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
  * @author Joël Hoekstra
  */
 public class View {
-    private double diceSize = 100.0;
     private Model model = null;
 
     public View() {}
@@ -17,7 +16,7 @@ public class View {
         this.model = model;
     }
 
-    public Group generateBoard() {
+    public Group generateBoard(double diceWidth, double diceHeight) {
         Group group = new Group();
         char[][] tempBoard = model.getBoard().getBoard();
         Dice dice;
@@ -25,10 +24,12 @@ public class View {
         for (x = 0; x < tempBoard.length; x++) {
             for (y = 0; y < tempBoard.length; y++) {
                 dice = new Dice()
-                        .setPosition(new Position2D().setX(x * diceSize).setY(y * diceSize))
+                        .setPosition(new Position2D().setX(x * diceWidth).setY(y * diceHeight))
                         .setLetter(tempBoard[x][y])
                         .setColor(((x + y) % 2 == 0) ? Color.GOLDENROD : Color.ALICEBLUE)
-                        .setSize(diceSize);
+                        .setSize(diceWidth, diceHeight)
+                        .setActive(false)
+                        .setBoardPosition(new Position2D().setX(x).setY(y));
                 dice.render();
                 group.getChildren().add(dice);
             }

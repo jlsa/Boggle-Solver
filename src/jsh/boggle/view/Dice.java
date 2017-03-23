@@ -21,19 +21,49 @@ import javafx.scene.layout.StackPane;
 public class Dice extends StackPane {
     private char letter;
     private Color color;
-    private double size;
+    private double width;
+    private double height;
     private Position2D position;
+    private Position2D boardPosition;
+    private boolean active;
 
     public Dice() { }
+
+    public char getLetter() {
+        return letter;
+    }
 
     public Dice setPosition(Position2D position) {
         this.position = position;
         return this;
     }
 
-    public Dice setSize(double size) {
-        this.size = size;
+    public Dice setBoardPosition(Position2D position) {
+        this.boardPosition = position;
         return this;
+    }
+
+    public Position2D getBoardPosition() {
+        return boardPosition;
+    }
+
+    public Position2D getPosition() {
+        return position;
+    }
+
+    public Dice setSize(double width, double height) {
+        this.width = width;
+        this.height = height;
+        return this;
+    }
+
+    public Dice setActive(boolean active) {
+        this.active = active;
+        return this;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     public Dice setLetter(char letter) {
@@ -47,17 +77,21 @@ public class Dice extends StackPane {
     }
 
     public void render() {
-        double x = position.getX();
-        double y = position.getY();
+        double x = getPosition().getX();
+        double y = getPosition().getY();
 
-        Rectangle dice = new Rectangle(x, y, size, size);
+        Rectangle dice = new Rectangle(x, y, width, height);
         dice.setFill(color);
         dice.setStroke(Color.BLACK);
 
         Label text  = new Label(Character.toString(letter));
-        text.setFont(Font.font("Verdana", FontWeight.BOLD, 70));
+        text.setFont(Font.font("Verdana", FontWeight.BOLD, (Double.valueOf(height / 2).intValue())));
         text.setAlignment(Pos.CENTER);
-        text.setTextFill(Color.PURPLE);
+        text.setTextFill(Color.BLACK);
+        if (isActive()) {
+            dice.setFill(Color.DARKGRAY);
+            text.setUnderline(true);
+        }
 
         setTranslateX(x);
         setTranslateY(y);

@@ -1,6 +1,8 @@
 package jsh.boggle.model;
 
 import java.util.*;
+
+import jsh.boggle.view.Position2D;
 import jsh.boggle.view.View;
 
 /**
@@ -12,12 +14,11 @@ public class Model {
     private Board board;
     private TreeSet<String> words = new TreeSet<>();
     private Dictionary dictionary;
-
-    private View view;
+    private HashMap<String, ArrayList<Position2D>> positionsList;
 
     public Model(View view) {
-        this.view = view;
         view.setModel(this);
+        positionsList = new HashMap<>();
         dictionary = new Dictionary();
         board = new Board(4);
         gridSize = board.getGridSize();
@@ -38,6 +39,13 @@ public class Model {
 
     public Board getBoard() {
         return board;
+    }
+
+    public ArrayList<Position2D> getPositionsFromWord(String word) {
+        if (positionsList.containsKey(word)) {
+            return positionsList.get(word);
+        }
+        return null;
     }
 
     public void reset() {
@@ -78,18 +86,30 @@ public class Model {
         long elapsedTimeNano = endTimeNano - startTimeNano;
         System.out.println("It took " + (endTime - startTime) + " ms to find all the words.");
         System.out.println("It took " + (elapsedTimeNano) + " ns to find all the words.");
-        System.out.println("There are " + N + " words found");
+        System.out.println("There are " + positionsList.size() + " words found");
     }
 
     private void findWordsUtil(TrieNode child, String str, boolean[][] visited, int i, int j) {
+        TrieNode[] node = child.child;
+        visited[i][j] = true;
+
         if(child.isWord){
             if (str.length() >= 3) {
                 words.add(str);
                 N++;
+                ArrayList<Position2D> positions = new ArrayList<>();
+                for (int xx = 0; xx < gridSize; xx++) {
+                    for (int yy = 0; yy < gridSize; yy++) {
+                        if (visited[xx][yy]) {
+                            positions.add(new Position2D(xx, yy));
+                        }
+                    }
+                }
+                positionsList.put(str, positions);
             }
         }
-        TrieNode[] node = child.child;
-        visited[i][j] = true;
+
+
         int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
         int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
         for(int k = 0; k < 8; k++){

@@ -44,8 +44,7 @@ public class Board {
         return board;
     }
 
-
-    public void generate(int gridSize) {
+    public Board generate(int gridSize) {
         int x, y;
         this.gridSize = gridSize;
         board = new char[gridSize][gridSize];
@@ -55,7 +54,18 @@ public class Board {
                 board[x][y] = generateLetter();
             }
         }
+        return this;
     }
+
+    public void generatetestBoardSmall() {
+        gridSize = 2;
+        char[][] testBoard = {
+                {'k', 'a'},
+                {'r', 't'}
+        };
+        board = testBoard;
+    }
+
 
     public void generateTestBoard() {
         gridSize = 4;

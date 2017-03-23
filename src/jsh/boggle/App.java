@@ -16,6 +16,9 @@ public class App extends Application {
     private Model model;
     private View view;
 
+    private int width = 1024;
+    private int height = 768;
+
     @Override
     public void start(Stage stage) throws Exception {
         view = new View();
@@ -26,7 +29,7 @@ public class App extends Application {
         ctrl.setView(view);
         ctrl.setModel(model);
         ctrl.render();
-        Scene scene = new Scene(root, 1024, 768);
+        Scene scene = new Scene(root, width, height);
         stage.setScene(scene);
 
         stage.setTitle("Boggle Board");
@@ -34,6 +37,7 @@ public class App extends Application {
             ctrl.closeApplication();
             e.consume(); // if not closing make sure it is consumed.
         });
+        stage.setResizable(false);
         stage.show();
     }
 }

@@ -42,4 +42,9 @@ public class Position2D {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "Position2D : x(" + x + ") y(" + y + ")";
+    }
+
 }

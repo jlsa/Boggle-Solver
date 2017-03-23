@@ -4,7 +4,7 @@ package jsh.boggle.model;
  * @author Joël Hoekstra
  */
 public class Dictionary {
-    private String filename = "nl-dict.txt";
+    private String filename = "dict.txt";
 
     private TrieNode words;
 

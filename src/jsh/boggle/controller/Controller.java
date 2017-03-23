@@ -2,32 +2,36 @@ package jsh.boggle.controller;
 
 import java.net.URL;
 import javafx.fxml.FXML;
+
+import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.Optional;
+
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.stage.Stage;
-import jsh.boggle.view.Cell;
+import jsh.boggle.view.Dice;
+import jsh.boggle.view.Position2D;
+import jsh.boggle.view.View;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import jsh.boggle.model.Model;
 import javafx.stage.StageStyle;
 import java.util.ResourceBundle;
-import javafx.scene.paint.Color;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert.AlertType;
-import jsh.boggle.view.View;
 
 /**
  * @author Joël Hoekstra
  */
-public class Controller implements Initializable{
+public class Controller implements Initializable {
 
     private Model model;
-    private Cell[][] board;
     private View view;
+    private Group dice;
 
     @FXML
     VBox root;
@@ -44,6 +48,10 @@ public class Controller implements Initializable{
     @FXML
     ListView wordListView;
 
+    @FXML
+    Label wordsFoundLabel;
+
+
     ObservableList<String> items = FXCollections.observableArrayList();
 
     public Controller() { }
@@ -52,25 +60,53 @@ public class Controller implements Initializable{
         this.model = model;
     }
 
-    public Model getModel() {
-        return model;
-    }
-
     public void setView(View view) {
         this.view = view;
-    }
-
-    public View getView() {
-        return view;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
+    private void deActivateAllDice() {
+        for (int n = 0; n < dice.getChildren().size(); n++) {
+            Node node = dice.getChildren().get(n);
+            if (node instanceof Dice) {
+                Dice die = ((Dice) node);
+                die.setActive(false);
+                die.render();
+            }
+        }
+    }
+
     @FXML
     public void handleMouseClick(MouseEvent e) {
-        System.out.println("clicked on " + wordListView.getSelectionModel().getSelectedItem());
+        deActivateAllDice();
+        Object target = wordListView.getSelectionModel().getSelectedItem();
+        if (target != null) {
+            String word = target.toString();
+            ArrayList<Position2D> positions = model.getPositionsFromWord(word);
+            if (positions != null) {
+                for (int j = 0; j < dice.getChildren().size(); j++) {
+                    Node node = dice.getChildren().get(j);
+                    if (node instanceof Dice) {
+                        Dice die = ((Dice) node);
+                        for (int i = 0; i < positions.size(); i++) {
+                            double posX = positions.get(i).getX();
+                            double posY = positions.get(i).getY();
+
+                            double boardX = die.getBoardPosition().getX();
+                            double boardY = die.getBoardPosition().getY();
+
+                            if (posX == boardX && posY == boardY) {
+                                die.setActive(true);
+                                die.render();
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @FXML
@@ -118,10 +154,16 @@ public class Controller implements Initializable{
 
     public void render() {
         model.reset();
-        mainView.getChildren().add(view.generateBoard());
+
+        double diceWidth = (1024-308) / model.getBoard().getGridSize();
+        double diceHeight = (768 - 60) / model.getBoard().getGridSize();
+        dice = view.generateBoard(diceWidth, diceHeight);
+        mainView.getChildren().add(dice);
+
 
         addWordsToItemsList(model.getAllWordsInBoard());
         wordListView.setItems(items);
+        wordsFoundLabel.setText("Words found: " + items.size());
     }
 
     public void addWordsToItemsList(TreeSet<String> words) {
