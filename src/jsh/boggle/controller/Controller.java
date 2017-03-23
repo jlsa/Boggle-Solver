@@ -68,44 +68,12 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-    private void deActivateAllDice() {
-        for (int n = 0; n < dice.getChildren().size(); n++) {
-            Node node = dice.getChildren().get(n);
-            if (node instanceof Dice) {
-                Dice die = ((Dice) node);
-                die.setActive(false);
-                die.render();
-            }
-        }
-    }
-
     @FXML
     public void handleMouseClick(MouseEvent e) {
-        deActivateAllDice();
+        view.deActivateAllDice();
         Object target = wordListView.getSelectionModel().getSelectedItem();
         if (target != null) {
-            String word = target.toString();
-            ArrayList<Position2D<Integer>> positions = model.getPositionsFromWord(word);
-            if (positions != null) {
-                for (int j = 0; j < dice.getChildren().size(); j++) {
-                    Node node = dice.getChildren().get(j);
-                    if (node instanceof Dice) {
-                        Dice die = ((Dice) node);
-                        for (int i = 0; i < positions.size(); i++) {
-                            int posX = positions.get(i).getX();
-                            int posY = positions.get(i).getY();
-
-                            int boardX = die.getBoardPosition().getX();
-                            int boardY = die.getBoardPosition().getY();
-
-                            if (posX == boardX && posY == boardY) {
-                                die.setActive(true);
-                                die.render();
-                            }
-                        }
-                    }
-                }
-            }
+            view.activateDice(target.toString());
         }
     }
 
@@ -154,10 +122,7 @@ public class Controller implements Initializable {
 
     public void render() {
         model.reset();
-
-        double diceWidth = (1024-308) / model.getBoard().length;
-        double diceHeight = (768 - 60) / model.getBoard().length;
-        dice = view.generateBoard(diceWidth, diceHeight);
+        dice = view.getBoardGroup();
         mainView.getChildren().add(dice);
 
 
