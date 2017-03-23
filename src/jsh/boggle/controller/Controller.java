@@ -155,8 +155,8 @@ public class Controller implements Initializable {
     public void render() {
         model.reset();
 
-        double diceWidth = (1024-308) / model.getBoard().getGridSize();
-        double diceHeight = (768 - 60) / model.getBoard().getGridSize();
+        double diceWidth = (1024-308) / model.getBoard().length;
+        double diceHeight = (768 - 60) / model.getBoard().length;
         dice = view.generateBoard(diceWidth, diceHeight);
         mainView.getChildren().add(dice);
 

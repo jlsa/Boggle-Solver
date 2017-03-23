@@ -18,7 +18,7 @@ public class View {
 
     public Group generateBoard(double diceWidth, double diceHeight) {
         Group group = new Group();
-        char[][] tempBoard = model.getBoard().getBoard();
+        char[][] tempBoard = model.getBoard();
         Dice dice;
         int x, y;
         for (x = 0; x < tempBoard.length; x++) {

@@ -37,8 +37,8 @@ public class Model {
         }
     }
 
-    public Board getBoard() {
-        return board;
+    public char[][] getBoard() {
+        return board.getBoard();
     }
 
     public ArrayList<Position2D> getPositionsFromWord(String word) {
