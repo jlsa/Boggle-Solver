@@ -85,18 +85,18 @@ public class Controller implements Initializable {
         Object target = wordListView.getSelectionModel().getSelectedItem();
         if (target != null) {
             String word = target.toString();
-            ArrayList<Position2D> positions = model.getPositionsFromWord(word);
+            ArrayList<Position2D<Integer>> positions = model.getPositionsFromWord(word);
             if (positions != null) {
                 for (int j = 0; j < dice.getChildren().size(); j++) {
                     Node node = dice.getChildren().get(j);
                     if (node instanceof Dice) {
                         Dice die = ((Dice) node);
                         for (int i = 0; i < positions.size(); i++) {
-                            double posX = positions.get(i).getX();
-                            double posY = positions.get(i).getY();
+                            int posX = positions.get(i).getX();
+                            int posY = positions.get(i).getY();
 
-                            double boardX = die.getBoardPosition().getX();
-                            double boardY = die.getBoardPosition().getY();
+                            int boardX = die.getBoardPosition().getX();
+                            int boardY = die.getBoardPosition().getY();
 
                             if (posX == boardX && posY == boardY) {
                                 die.setActive(true);

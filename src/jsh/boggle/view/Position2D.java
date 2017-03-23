@@ -9,35 +9,31 @@ package jsh.boggle.view;
  *
  * @author Joël Hoekstra
  */
-public class Position2D {
+public class Position2D<E> {
 
-    private double x = 0.0;
-    private double y = 0.0;
+    private E x = null;
+    private E y = null;
 
     public Position2D() { }
 
-    public Position2D(double x, double y) {
+    public Position2D(E x, E y) {
         this.setX(x).setY(y);
     }
 
-    public Position2D(Position2D position) {
-        this.setX(position.getX()).setY(position.getY());
-    }
-
-    public double getX() {
+    public E getX() {
         return x;
     }
 
-    public Position2D setX(double x) {
+    public Position2D setX(E x) {
         this.x = x;
         return this;
     }
 
-    public double getY() {
+    public E getY() {
         return y;
     }
 
-    public Position2D setY(double y) {
+    public Position2D setY(E y) {
         this.y = y;
         return this;
     }

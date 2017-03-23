@@ -23,8 +23,8 @@ public class Dice extends StackPane {
     private Color color;
     private double width;
     private double height;
-    private Position2D position;
-    private Position2D boardPosition;
+    private Position2D<Double> position;
+    private Position2D<Integer> boardPosition;
     private boolean active;
 
     public Dice() { }
@@ -33,21 +33,21 @@ public class Dice extends StackPane {
         return letter;
     }
 
-    public Dice setPosition(Position2D position) {
+    public Dice setPosition(Position2D<Double> position) {
         this.position = position;
         return this;
     }
 
-    public Dice setBoardPosition(Position2D position) {
+    public Dice setBoardPosition(Position2D<Integer> position) {
         this.boardPosition = position;
         return this;
     }
 
-    public Position2D getBoardPosition() {
+    public Position2D<Integer> getBoardPosition() {
         return boardPosition;
     }
 
-    public Position2D getPosition() {
+    public Position2D<Double> getPosition() {
         return position;
     }
 
