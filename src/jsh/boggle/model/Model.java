@@ -76,7 +76,6 @@ public class Model {
                 char letter = board.getBoard()[x][y];
                 String str = "";
                 if(child[letter] != null){
-//                    findWordsUtil(child[ch], str + ch, visited, i, j);
                     findWordsUtil(child[letter], str + letter, visited, new Position2D<Integer>(x, y));
                 }
             }
@@ -92,11 +91,9 @@ public class Model {
 
 
     private void findWordsUtil(TrieNode child, String str, boolean[][] visited, Position2D<Integer> position) {
-        findWordsUtil(child, str, visited, position.getX(), position.getY());
-    }
-
-    private void findWordsUtil(TrieNode child, String str, boolean[][] visited, int i, int j) {
         TrieNode[] node = child.child;
+        int i = position.getX();
+        int j = position.getY();
         visited[i][j] = true;
 
         if(child.isWord){
@@ -115,7 +112,6 @@ public class Model {
             }
         }
 
-
         int[] dx = { -1, -1, -1, 0, 0, 1, 1, 1 };
         int[] dy = { -1, 0, 1, -1, 1, -1, 0, 1 };
         for(int k = 0; k < 8; k++){
@@ -123,7 +119,12 @@ public class Model {
             int y = j + dy[k];
             if (isValid(x, y) && !visited[x][y]){
                 if(node[board.getBoard()[x][y]] != null){
-                    findWordsUtil(node[board.getBoard()[x][y]], str + board.getBoard()[x][y], visited, x, y);
+                    findWordsUtil(
+                            node[board.getBoard()[x][y]],
+                            str + board.getBoard()[x][y],
+                            visited,
+                            new Position2D<Integer>(x, y)
+                    );
                 }
             }
         }
