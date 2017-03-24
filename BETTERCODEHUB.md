@@ -19,7 +19,7 @@ Alle methoden hebben vier of minder parameters. Het zou nog verbeterd kunnen wor
 Er zijn twee klassen die meer dan 10 keer gebruikt worden. Deze twee klassen zijn ook vrij fundamenteel nodig waardoor dit ook niet geheel onverwachts is.
 
 ## Couple Architecture Components Loosely
-De code is vrij goed van elkaar los gekoppeld en hoeft hierdoor weinig van elkaar te weten om te kunnen functioneren.
+De code is te afhankelijk van elkaar door expliciet te verbinden naar bepaalde klassen. Er had een Observer Pattern gebruikt kunnen worden om hier wat meer onafhankelijkheid te creëren.
 
 ## Keep Architecture Components Balanced
 De gewichten van de componenten zijn goed doordat de code goed is opgesplitst naar aanleiding van functionaliteit.
