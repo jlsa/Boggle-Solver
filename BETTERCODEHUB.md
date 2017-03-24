@@ -10,13 +10,13 @@ Dit systeem heeft net een meerderheid aan functies die klein genoeg zijn voor ee
 Alle code is zo te lezen dat het eenvoudig te begrijpen is.
 
 ## Write Code Once
-Er zijn nog een paar regels redunant in de code. Dit zou verbeterd kunnen worden door te abstraheren.
+Er zit geen redunante code in dit systeem.
 
 ## Keep Unit Interfaces Small
-Alle methoden hebben vier of minder parameters. Het zou nog verbeterd kunnen worden door ze nog meer in te korten. Dat is in deze situatie een overbodig.
+Alle methoden hebben vier of minder parameters. Het zou nog verbeterd kunnen worden door ze nog meer in te korten. Dat is in deze situatie overbodig.
 
 ## Seperate Concerns in Modules
-De klasse AbstractSort is in dit systeem iets te veel verbonden met verschillende modulen. Dit weegt vrij weinig mee doordat het een abstracte klasse is voor de verschillende sorteer algoritmes.
+Er zijn twee klassen die meer dan 10 keer gebruikt worden. Deze twee klassen zijn ook vrij fundamenteel nodig waardoor dit ook niet geheel onverwachts is.
 
 ## Couple Architecture Components Loosely
 De code is vrij goed van elkaar los gekoppeld en hoeft hierdoor weinig van elkaar te weten om te kunnen functioneren.
@@ -31,4 +31,4 @@ De grootte van de code is erg klein 0.08 jaar. Hierdoor dus in de goede range va
 De code wordt niet getest. Hierdoor is er geen zekerheid in functionaliteit wanneer er een wijziging plaatsvind.
 
 ## Write Clean Code
-De code is goed te onderhouden en bevat geen tot weinig nutteloze commentaren, geen slechte namen voor methoden en variabelen.
+De code is goed te onderhouden en bevat geen nutteloze commentaren, geen slechte namen voor methoden en variabelen.
