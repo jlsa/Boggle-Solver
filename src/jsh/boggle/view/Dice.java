@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.FontWeight;
 import javafx.scene.layout.StackPane;
+import jsh.boggle.util.Position2D;
 
 /**
  * A graphical representation of a dice in real life.

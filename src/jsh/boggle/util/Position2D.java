@@ -1,4 +1,4 @@
-package jsh.boggle.view;
+package jsh.boggle.util;
 
 /**
  * Position object which only stores x and y axis. Thus 2D.

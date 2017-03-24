@@ -4,6 +4,8 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import jsh.boggle.model.Model;
 import javafx.scene.paint.Color;
+import jsh.boggle.util.Config;
+import jsh.boggle.util.Position2D;
 
 import java.util.ArrayList;
 
@@ -22,10 +24,6 @@ public class View {
 
     public void setModel(Model model) {
         this.model = model;
-    }
-
-    public void render() {
-        board = generateBoard();
     }
 
     public Group getBoardGroup() {
@@ -74,12 +72,12 @@ public class View {
         char[][] tempBoard = model.getBoard();
         Dice dice;
         diceSize = new Position2D<Double>()
-                .setX(Integer.valueOf((1024-308) / model.getBoard().length).doubleValue())
-                .setY(Integer.valueOf((768 - 60) / model.getBoard().length).doubleValue());
+                .setX(Integer.valueOf((1024-308) / Config.GRID_SIZE).doubleValue())
+                .setY(Integer.valueOf((768 - 60) / Config.GRID_SIZE).doubleValue());
 
         int x, y;
-        for (x = 0; x < tempBoard.length; x++) {
-            for (y = 0; y < tempBoard.length; y++) {
+        for (x = 0; x < Config.GRID_SIZE; x++) {
+            for (y = 0; y < Config.GRID_SIZE; y++) {
                 dice = new Dice()
                         .setPosition(new Position2D<Double>().setX(x * diceSize.getX()).setY(y * diceSize.getY()))
                         .setLetter(tempBoard[x][y])

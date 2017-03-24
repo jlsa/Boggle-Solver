@@ -1,8 +1,9 @@
-package jsh.boggle;
+package jsh.boggle.application;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+import jsh.boggle.util.Config;
 import jsh.boggle.view.View;
 import javafx.fxml.FXMLLoader;
 import jsh.boggle.model.Model;
@@ -23,7 +24,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         view = new View();
         model = new Model(view);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/fxml/app.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/fxml/app.fxml"));
         Parent root = loader.load();
         Controller ctrl = loader.getController();
         ctrl.setView(view);
@@ -32,7 +33,7 @@ public class App extends Application {
         Scene scene = new Scene(root, width, height);
         stage.setScene(scene);
 
-        stage.setTitle("Boggle Board");
+        stage.setTitle(Config.APP_NAME);
         stage.setOnCloseRequest(e -> {
             ctrl.closeApplication();
             e.consume(); // if not closing make sure it is consumed.

@@ -3,15 +3,11 @@ package jsh.boggle.controller;
 import java.net.URL;
 import javafx.fxml.FXML;
 
-import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.Optional;
 
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.stage.Stage;
-import jsh.boggle.view.Dice;
-import jsh.boggle.view.Position2D;
 import jsh.boggle.view.View;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
@@ -31,7 +27,6 @@ public class Controller implements Initializable {
 
     private Model model;
     private View view;
-    private Group dice;
 
     @FXML
     VBox root;
@@ -50,7 +45,6 @@ public class Controller implements Initializable {
 
     @FXML
     Label wordsFoundLabel;
-
 
     ObservableList<String> items = FXCollections.observableArrayList();
 
@@ -122,8 +116,7 @@ public class Controller implements Initializable {
 
     public void render() {
         model.reset();
-        dice = view.getBoardGroup();
-        mainView.getChildren().add(dice);
+        mainView.getChildren().add(view.getBoardGroup());
 
 
         addWordsToItemsList(model.getAllWordsInBoard());

@@ -2,14 +2,14 @@ package jsh.boggle.model;
 
 import java.util.*;
 
-import jsh.boggle.view.Position2D;
+import jsh.boggle.util.Config;
+import jsh.boggle.util.Position2D;
 import jsh.boggle.view.View;
 
 /**
  * @author Joël Hoekstra
  */
 public class Model {
-    private int gridSize;
     private int N;
     private Board board;
     private TreeSet<String> words = new TreeSet<>();
@@ -20,17 +20,16 @@ public class Model {
         view.setModel(this);
         positionsList = new HashMap<>();
         dictionary = new Dictionary();
-        board = new Board(4);
-        gridSize = board.getGridSize();
+        board = new Board();
         N = 0;
         words.clear();
-        board.generate(gridSize);
+        board.generate();
     }
 
     public void printBoard() {
         System.out.println();
-        for (int x = 0; x < gridSize; x++) {
-            for (int y = 0; y < gridSize; y++) {
+        for (int x = 0; x < Config.GRID_SIZE; x++) {
+            for (int y = 0; y < Config.GRID_SIZE; y++) {
                 System.out.print(" " + board.getBoard()[x][y]);
             }
             System.out.println();
@@ -51,7 +50,7 @@ public class Model {
     public void reset() {
         N = 0;
         words.clear();
-        board.generate(gridSize);
+        board.generate();
 
         printBoard();
         findWords();
@@ -62,17 +61,16 @@ public class Model {
     }
 
     private void findWords() {
-        long startTimeNano = System.nanoTime();
         long startTime = System.currentTimeMillis();
-        boolean[][] visited  = new boolean[gridSize][gridSize];
+        boolean[][] visited  = new boolean[Config.GRID_SIZE][Config.GRID_SIZE];
         int x, y;
-        for(x = 0; x < gridSize; x++){
-            for(y = 0; y < gridSize; y++)
+        for(x = 0; x < Config.GRID_SIZE; x++){
+            for(y = 0; y < Config.GRID_SIZE; y++)
                 visited[x][y] = false;
         }
         TrieNode[] child  = dictionary.getWords().child;
-        for(x = 0; x < gridSize; x++){
-            for(y = 0; y < gridSize; y++){
+        for(x = 0; x < Config.GRID_SIZE; x++){
+            for(y = 0; y < Config.GRID_SIZE; y++){
                 char letter = board.getBoard()[x][y];
                 String str = "";
                 if(child[letter] != null){
@@ -81,11 +79,7 @@ public class Model {
             }
         }
         long endTime = System.currentTimeMillis();
-        long endTimeNano = System.nanoTime();
-
-        long elapsedTimeNano = endTimeNano - startTimeNano;
         System.out.println("It took " + (endTime - startTime) + " ms to find all the words.");
-        System.out.println("It took " + (elapsedTimeNano) + " ns to find all the words.");
         System.out.println("There are " + positionsList.size() + " words found");
     }
 
@@ -101,8 +95,8 @@ public class Model {
                 words.add(str);
                 N++;
                 ArrayList<Position2D<Integer>> positions = new ArrayList<>();
-                for (int xx = 0; xx < gridSize; xx++) {
-                    for (int yy = 0; yy < gridSize; yy++) {
+                for (int xx = 0; xx < Config.GRID_SIZE; xx++) {
+                    for (int yy = 0; yy < Config.GRID_SIZE; yy++) {
                         if (visited[xx][yy]) {
                             positions.add(new Position2D<>(xx, yy));
                         }
@@ -132,7 +126,7 @@ public class Model {
     }
 
     private boolean isValid(int x, int y) {
-        return (x >= 0 && y >= 0 && x < gridSize && y < gridSize);
+        return (x >= 0 && y >= 0 && x < Config.GRID_SIZE && y < Config.GRID_SIZE);
     }
 
 }

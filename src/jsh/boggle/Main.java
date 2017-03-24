@@ -1,6 +1,7 @@
 package jsh.boggle;
 
 import javafx.application.Application;
+import jsh.boggle.application.App;
 
 /**
  * @author Joël Hoekstra

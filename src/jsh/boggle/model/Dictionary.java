@@ -1,15 +1,15 @@
 package jsh.boggle.model;
 
+import jsh.boggle.util.Config;
+
 /**
  * @author Joël Hoekstra
  */
 public class Dictionary {
-    private String filename = "dict.txt";
-
     private TrieNode words;
 
     public Dictionary() {
-        String[] dictionary = DictionaryReader.read(filename);
+        String[] dictionary = DictionaryReader.read(Config.DICTIONARY_FILENAME);
 
         char c = '\0'; // root value
         words = new TrieNode(c);
