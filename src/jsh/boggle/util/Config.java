@@ -7,7 +7,7 @@ public class Config {
     public static final String APP_NAME = "Boggle Solver Made Visual";
     public static final String DICTIONARY_FILENAME = "dict.txt";
     public static final int GRID_SIZE = 4;
-    
+
     public static final char[][] DIE_FACES = {
             {'a', 'a', 'e', 'e', 'g', 'n'}, // [A A E E G N]
             {'a', 'b', 'b', 'j', 'o', 'o'}, // [A B B J O O]

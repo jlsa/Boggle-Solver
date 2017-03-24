@@ -1,10 +1,10 @@
-[![BCH compliance](https://bettercodehub.com/edge/badge/jlsa/Boggle?token=a6c4046fbb4d538ca74a26f917d6b20a82050e0d)](https://bettercodehub.com/)
+[![BCH compliance](https://bettercodehub.com/edge/badge/jlsa/Boggle-Solver)](https://bettercodehub.com/)
 # Bettercodehub evaluatie
-Dit project heeft een 8 van de 10. Het is geen 10 doordat er een afwezigheid is van Tests en... Er zal ten alle tijden nog verbeteringen aangebracht kunnen worden en deze zullen hieronder worden beschreven. Hiernaast zal er in de toekomst ook gekeken moeten worden naar Unit Testing.
+Dit project heeft een 8 van de 10. Het is geen 10 doordat er een afwezigheid is van Tests en het systeem is nog niet goed van elkaar los gekoppeld (Couple Architecture Components Loosely). Hiernaast kunnen er verbeteringen aangebracht kunnen worden en zullen deze hieronder worden beschreven.
 
 
 ## Write Short Units of Code
-Er zijn nog enkele methodes die over het limiet van 15 regels gaan en hier zou dan nog een refactor slag voor uitgevoerd kunnen worden.
+Dit systeem heeft net een meerderheid aan functies die klein genoeg zijn voor een groen. Hier zou dus een goede verbeter slag aan te pas kunnen komen.
 
 ## Write Simple Units of Code
 Alle code is zo te lezen dat het eenvoudig te begrijpen is.
