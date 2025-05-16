@@ -5,8 +5,8 @@ package jsh.boggle.util;
  */
 public class Config {
     public static final String APP_NAME = "Boggle Solver Made Visual";
-    public static final String DICTIONARY_FILENAME = "dict.txt";
-    public static final int GRID_SIZE = 4;
+    public static final String DICTIONARY_FILENAME = "eng-dict.txt";
+    public static final int GRID_SIZE = (int) (Math.random() * (10 - 4 + 1)) + 4;
 
     public static final char[][] DIE_FACES = {
             {'a', 'a', 'e', 'e', 'g', 'n'}, // [A A E E G N]

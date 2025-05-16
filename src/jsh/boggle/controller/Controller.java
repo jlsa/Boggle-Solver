@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import java.util.TreeSet;
 import java.util.Optional;
 
-import javafx.scene.Group;
 import javafx.stage.Stage;
 import jsh.boggle.view.View;
 import javafx.scene.layout.*;
